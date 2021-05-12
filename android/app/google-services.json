@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "999905004140",
+    "project_id": "betlog-e035a",
+    "storage_bucket": "betlog-e035a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999905004140:android:3982f3d8bcff3e61c76649",
+        "android_client_info": {
+          "package_name": "com.terrydiederich.betlog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999905004140-s2l5d40nhrikpcr8lsnqt1u6aqi6deif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHtzXpQlnwE6gERHpNNEbVMHFxH5bBLcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999905004140-s2l5d40nhrikpcr8lsnqt1u6aqi6deif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
