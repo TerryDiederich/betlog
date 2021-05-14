@@ -1,11 +1,23 @@
+import 'package:betlog/data/database.dart';
+import 'package:betlog/models/sport.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class BetsPage extends StatelessWidget {
   static Route<dynamic> route() => MaterialPageRoute(
         builder: (context) => BetsPage(),
       );
 
-  _getData() async {}
+  _getData() async {
+    Database db = Database();
+    var uuid = Uuid();
+    var sport = Sport(
+      sportID: uuid.v1(),
+      name: 'NFL',
+      sortOrder: 3,
+    );
+    db.setSport(sport);
+  }
 
   @override
   Widget build(BuildContext context) {

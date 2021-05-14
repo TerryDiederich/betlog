@@ -1,24 +1,27 @@
 class Sport {
-  final int? id;
+  final String sportID;
   final String name;
-  final int? sortOrder;
+  final int sortOrder;
 
   Sport({
-    this.id,
+    required this.sportID,
     required this.name,
     required this.sortOrder,
   });
 
-  Sport.fromMap(Map<String, dynamic> dto)
-      : id = dto["id"],
-        name = dto["name"],
-        sortOrder = dto["sortOrder"];
+  factory Sport.fromJson(Map<String, dynamic> json) {
+    return Sport(
+      name: json['name'],
+      sortOrder: json['sortOrder'],
+      sportID: json['sportID'],
+    );
+  }
 
-  Map<String, Object?> toMap() {
+  Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
       'sortOrder': sortOrder,
+      'sportID': sportID,
     };
   }
 }
