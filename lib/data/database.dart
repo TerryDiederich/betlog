@@ -11,6 +11,14 @@ class Database {
         snapshot.docs.map((doc) => Sport.fromJson(doc.data())).toList());
   }
 
+  Future<List<Sport>> getSportsList() async {
+    return await _db.collection('sports').get().then((querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        print(doc.data());
+      });
+    });
+  }
+
   // upsert
   Future<void> setSport(Sport sport) {
     var options = SetOptions(merge: true);
