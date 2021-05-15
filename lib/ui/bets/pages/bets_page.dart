@@ -11,12 +11,17 @@ class BetsPage extends StatelessWidget {
   _getData() async {
     Database db = Database();
     var uuid = Uuid();
-    var sport = Sport(
-      sportID: uuid.v1(),
-      name: 'NFL',
-      sortOrder: 3,
-    );
-    db.setSport(sport);
+    // var sport = Sport(
+    //   sportID: uuid.v1(),
+    //   name: 'NFL',
+    //   sortOrder: 3,
+    // );
+    // db.setSport(sport);
+    List<Sport?> list = [];
+    list = await db.getSportsList();
+    if (list != null) {
+      var cnt = list.length;
+    }
   }
 
   @override

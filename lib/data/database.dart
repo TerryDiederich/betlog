@@ -11,12 +11,19 @@ class Database {
         snapshot.docs.map((doc) => Sport.fromJson(doc.data())).toList());
   }
 
-  Future<List<Sport>> getSportsList() async {
-    return await _db.collection('sports').get().then((querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        print(doc.data());
-      });
-    });
+  Future<List<Sport?>> getSportsList() async {
+    QuerySnapshot querySnapshot =
+        await _db.collection('sports').orderBy('sortOrder').get();
+
+    final allData = querySnapshot.docs
+        .map((doc) => Sport(
+              name: doc['name'],
+              sortOrder: doc['sortOrder'],
+              sportID: doc['sportID'],
+            ))
+        .toList();
+
+    return allData;
   }
 
   // upsert
