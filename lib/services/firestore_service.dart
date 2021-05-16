@@ -3,12 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 //https://github.com/flutter/flutter/issues/27095
 
-class Database {
+class FirestoreService {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Stream<List<Sport>> getSports() {
-    return _db.collection('sports').snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) => Sport.fromJson(doc.data())).toList());
+    return _db.collection('sports').orderBy('sortOrder').snapshots().map(
+        (snapshot) =>
+            snapshot.docs.map((doc) => Sport.fromJson(doc.data())).toList());
   }
 
   Future<List<Sport?>> getSportsList() async {

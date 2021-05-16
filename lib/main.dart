@@ -1,4 +1,4 @@
-import 'package:betlog/services/service_getit.dart';
+import 'package:betlog/providers/setup_getit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:betlog/ui/tabs/pages/tabs_page.dart';

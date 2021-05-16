@@ -1,9 +1,8 @@
-import 'package:betlog/data/database.dart';
-import 'package:betlog/models/sport.dart';
-import 'package:betlog/services/service_getit.dart';
+//import 'package:betlog/providers/sport_provider.dart';
+//import 'package:betlog/models/sport.dart';
+//import 'package:betlog/providers/setup_getit.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:uuid/uuid.dart';
+//import 'package:uuid/uuid.dart';
 
 class BetsPage extends StatelessWidget {
   static Route<dynamic> route() => MaterialPageRoute(
@@ -12,19 +11,17 @@ class BetsPage extends StatelessWidget {
 
   _getData() async {
     //Database db = Database();
-    final db = getIt<Database>();
-    var uuid = Uuid();
+    //  final sportProvider = getIt<SportProvider>();
+    // var uuid = Uuid();
     // var sport = Sport(
     //   sportID: uuid.v1(),
     //   name: 'NFL',
     //   sortOrder: 3,
     // );
     // db.setSport(sport);
-    List<Sport?> list = [];
-    list = await db.getSportsList();
-    if (list != null) {
-      var cnt = list.length;
-    }
+    // List<Sport?> list = [];
+    // list = await sportProvider.sportsList;
+    // var cnt = list.length;
   }
 
   @override
