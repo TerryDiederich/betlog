@@ -1,0 +1,75 @@
+First screen
+List of bets
+- default to open bets
+- Can change filter
+	- By sport
+	- By status, open, closed, all
+	- By sports book
+	- By date
+- action button to add a new bet
+- Tap bet to update 
+- swipe to delete
+Menu at bottom
+- Bets
+- Stats
+	- won/loss, total/by sport/ by book
+	- roi
+- Settings
+	- Sports
+	- Teams
+	- Defaults
+		- Bet Size
+		- Sport
+
+Enter new bet
+Date - default to today
+Book
+Sport
+Bet type
+
+if Moneyline
+Away Team
+Home Team
+Bet Team
+Odds
+Bet Amount
+To Win
+Notes
+
+If Spread
+Away Team
+Home Team
+Bet Team
+Spread
+Odds
+Bet Amount
+To Win
+Notes
+
+If Totals
+Away Team
+Home Team
+Totals
+Over/Under
+Odds
+Bet Amount
+To Win
+Notes
+
+If Parlay
+Odds
+Bet Amount
+To Win
+Notes
+
+To update bet
+Tap from list and get same screens
+
+To close bet
+Tap to update, then tap to close, menu? button?
+if Moneyline, Spread, Totals
+Away Score
+Home Score
+
+If Parlay
+Did Win (Y/N)

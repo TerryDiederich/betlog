@@ -9,6 +9,8 @@ class Sport {
     required this.sortOrder,
   });
 
+  Sport.empty([this.sportID = '', this.name = '', this.sortOrder = 0]);
+
   factory Sport.fromJson(Map<String, dynamic> json) {
     return Sport(
       name: json['name'],

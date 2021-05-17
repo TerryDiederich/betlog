@@ -56,7 +56,7 @@ class SportsListPage extends StatelessWidget {
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               builder: (context) => SportsEntry(
-                                sport: snapshot.data?[index],
+                                sport: snapshot.data![index],
                               ),
                             ),
                           );
@@ -69,8 +69,10 @@ class SportsListPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => SportsEntry()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => SportsEntry(
+                    sport: Sport.empty(),
+                  )));
         },
       ),
     );

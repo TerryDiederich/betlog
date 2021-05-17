@@ -1,0 +1,52 @@
+Moneyline bet
+- bet team: BOS
+- odds: -180
+
+Spread bet
+- Bet Team: BOS
+- Spread: -3.5
+- Odds: -110
+
+Totals bet
+- Total: 54.5
+- Over/Under: Under
+- Odds: -110
+
+Parlay bet
+- Odds: +272
+- Teams: HOU -162
+         WAS +130
+
+
+Data record
+- ID: alskdflsfdkj
+- Sportsbook: DraftKings
+- Sport: NFL
+- BetType: Spread
+- BetTeam: KC
+- Odds: -180
+- Spread: -3
+- Total: 55.5
+- OverUnder: Odds
+- Notes: (Parlay teams)
+- AwayTeam: LV
+- AwayTeamScore: 17
+- HomeTeam: KC
+- HomeTeamScore: 24
+- DidWin: Y,N,Empty
+- DidCover: Y,N,Empty
+
+Sports
+- ID
+- Name
+- SortOrder
+
+Sportsbooks
+- ID
+- Name
+
+Teams
+- ID
+- Sport
+- Team
+- Abbrev

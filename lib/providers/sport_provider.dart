@@ -29,16 +29,16 @@ class SportProvider with ChangeNotifier {
   }
 
   //functions
-  loadAll(Sport? sport) {
-    if (sport != null) {
-      _name = sport.name;
-      _sortOrder = sport.sortOrder;
-      _sportID = sport.sportID;
-    } else {
-      _name = '';
-      _sortOrder = 0;
-      _sportID = '';
-    }
+  initializeSport(Sport sport) {
+    _name = sport.name;
+    _sortOrder = sport.sortOrder;
+    _sportID = sport.sportID;
+  }
+
+  initializeEmptySport() {
+    _name = '';
+    _sortOrder = 0;
+    _sportID = '';
   }
 
   saveSport() {
