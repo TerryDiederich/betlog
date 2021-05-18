@@ -1,33 +1,33 @@
-class Sport {
-  String sportID;
+class Sportsbook {
+  String sportsbookID;
   String name;
   int sortOrder;
 
-  Sport({
-    required this.sportID,
+  Sportsbook({
+    required this.sportsbookID,
     required this.name,
     required this.sortOrder,
   });
 
-  Sport.empty([
-    this.sportID = '',
+  Sportsbook.empty([
+    this.sportsbookID = '',
     this.name = '',
     this.sortOrder = 0,
   ]);
 
-  factory Sport.fromJson(Map<String, dynamic> json) {
-    return Sport(
+  factory Sportsbook.fromJson(Map<String, dynamic> json) {
+    return Sportsbook(
+      sportsbookID: json['sportsbookID'],
       name: json['name'],
       sortOrder: json['sortOrder'],
-      sportID: json['sportID'],
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'sportsbookID': sportsbookID,
       'name': name,
       'sortOrder': sortOrder,
-      'sportID': sportID,
     };
   }
 }

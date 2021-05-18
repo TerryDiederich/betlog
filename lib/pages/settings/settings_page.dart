@@ -1,5 +1,6 @@
 import 'package:betlog/pages/settings/settings_detail_page.dart';
 import 'package:betlog/pages/settings/sports_list.dart';
+import 'package:betlog/pages/settings/sportsbook_list.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -20,6 +21,12 @@ class SettingsPage extends StatelessWidget {
                   SportsListPage.route(),
                 ),
                 child: Text("Edit Sports"),
+              ),
+              OutlinedButton(
+                onPressed: () => Navigator.of(context).push(
+                  SportsbookListPage.route(),
+                ),
+                child: Text("Edit Sportsbooks"),
               ),
               OutlinedButton(
                 onPressed: () => Navigator.of(context).push(

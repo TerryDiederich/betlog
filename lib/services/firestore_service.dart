@@ -1,4 +1,5 @@
 import 'package:betlog/models/sport.dart';
+import 'package:betlog/models/sportsbook.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //https://github.com/flutter/flutter/issues/27095
@@ -6,7 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirestoreService {
   FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Stream<List<Sport>> getSports() {
+  // ---------- Sports----------------------------------------------
+  Stream<List<Sport>> getSportsStream() {
     return _db.collection('sports').orderBy('sortOrder').snapshots().map(
         (snapshot) =>
             snapshot.docs.map((doc) => Sport.fromJson(doc.data())).toList());
@@ -16,7 +18,7 @@ class FirestoreService {
     QuerySnapshot querySnapshot =
         await _db.collection('sports').orderBy('sortOrder').get();
 
-    final allData = querySnapshot.docs
+    final sports = querySnapshot.docs
         .map((doc) => Sport(
               name: doc['name'],
               sortOrder: doc['sortOrder'],
@@ -24,7 +26,7 @@ class FirestoreService {
             ))
         .toList();
 
-    return allData;
+    return sports;
   }
 
   Future<Sport?> getOneSport(String name) async {
@@ -63,4 +65,67 @@ class FirestoreService {
   Future<void> removeSport(String sportID) {
     return _db.collection('sports').doc(sportID).delete();
   }
+  // ---------- Sports----------------------------------------------
+
+  // ---------- Sportsbooks----------------------------------------------
+  Stream<List<Sportsbook>> getSportsbooksStream() {
+    return _db.collection('sportsbooks').orderBy('sortOrder').snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => Sportsbook.fromJson(doc.data()))
+            .toList());
+  }
+
+  Future<List<Sportsbook?>> getSportsbookList() async {
+    QuerySnapshot querySnapshot =
+        await _db.collection('sportsbooks').orderBy('sortOrder').get();
+
+    final sportsbooks = querySnapshot.docs
+        .map((doc) => Sportsbook(
+              name: doc['name'],
+              sortOrder: doc['sortOrder'],
+              sportsbookID: doc['sportsbookID'],
+            ))
+        .toList();
+
+    return sportsbooks;
+  }
+
+  Future<Sportsbook?> getOneSportsbook(String name) async {
+    QuerySnapshot querySnapshot =
+        await _db.collection('sportsbook').where('name', isEqualTo: name).get();
+
+    if (querySnapshot.docs.isEmpty) {
+      return null;
+    } else {
+      final sportsbook = querySnapshot.docs
+          .map((doc) => Sportsbook(
+                name: doc['name'],
+                sortOrder: doc['sortOrder'],
+                sportsbookID: doc['sportsbookID'],
+              ))
+          .first;
+      return sportsbook;
+    }
+  }
+
+  // upsert
+  Future<void> setSportsbook(Sportsbook sportsbook) async {
+    Sportsbook? workSportsbook = await getOneSportsbook(sportsbook.name);
+
+    if (workSportsbook != null) {
+      sportsbook.sportsbookID = workSportsbook.sportsbookID;
+    }
+
+    var options = SetOptions(merge: true);
+    return _db
+        .collection('sportsbook')
+        .doc(sportsbook.sportsbookID)
+        .set(sportsbook.toMap(), options);
+  }
+
+  Future<void> removeSportsbook(String sportsbookID) {
+    return _db.collection('sportsbook').doc(sportsbookID).delete();
+  }
+
+  // ---------- Sportsbooks----------------------------------------------
 }

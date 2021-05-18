@@ -13,7 +13,7 @@ class SportProvider with ChangeNotifier {
   //Getters
   String get name => _name;
   int get sortOrder => _sortOrder;
-  Stream<List<Sport>> get sports => firestoreService.getSports();
+  Stream<List<Sport>> get sports => firestoreService.getSportsStream();
   Future<List<Sport?>> get sportsList async =>
       await firestoreService.getSportsList();
 
