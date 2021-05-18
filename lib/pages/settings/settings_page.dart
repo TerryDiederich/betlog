@@ -1,15 +1,8 @@
-import 'package:betlog/ui/settings/pages/sports_list.dart';
-
-/// lib/presentation/shop/pages/shop_page.dart
-
+import 'package:betlog/pages/settings/settings_detail_page.dart';
+import 'package:betlog/pages/settings/sports_list.dart';
 import 'package:flutter/material.dart';
-import 'package:betlog/ui/settings/pages/settings_detail_page.dart';
 
 class SettingsPage extends StatelessWidget {
-  static Route<dynamic> route() => MaterialPageRoute(
-        builder: (context) => SettingsPage(),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,4 +33,8 @@ class SettingsPage extends StatelessWidget {
       ),
     );
   }
+
+  static Route<dynamic> route() => MaterialPageRoute(
+        builder: (context) => SettingsPage(),
+      );
 }

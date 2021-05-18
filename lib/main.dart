@@ -1,7 +1,7 @@
 import 'package:betlog/providers/setup_getit.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:betlog/ui/tabs/pages/tabs_page.dart';
+import 'package:betlog/pages/tabs/pages/tabs_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

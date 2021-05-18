@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:betlog/ui/bets/pages/bets_page.dart';
-import 'package:betlog/ui/stats/pages/stats_page.dart';
-import 'package:betlog/ui/settings/pages/settings_page.dart';
+import 'package:betlog/pages/bets/bets_page.dart';
+import 'package:betlog/pages/stats/stats_page.dart';
+import 'package:betlog/pages/settings/settings_page.dart';
 
 class TabNavigationItem {
   final Widget page;

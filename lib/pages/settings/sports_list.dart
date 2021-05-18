@@ -1,7 +1,7 @@
 import 'package:betlog/models/sport.dart';
 import 'package:betlog/providers/setup_getit.dart';
 import 'package:betlog/providers/sport_provider.dart';
-import 'package:betlog/ui/settings/pages/sports_entry.dart';
+import 'package:betlog/pages/settings/sports_entry.dart';
 import 'package:flutter/material.dart';
 
 class SportsListPage extends StatelessWidget {

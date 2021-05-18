@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:betlog/ui/tabs/models/tab_navigation_item.dart';
+import 'package:betlog/pages/tabs/models/tab_navigation_item.dart';
 
 class TabsPage extends StatefulWidget {
   @override
