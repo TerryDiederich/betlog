@@ -1,7 +1,7 @@
 class Sport {
-  final String sportID;
-  final String name;
-  final int sortOrder;
+  String sportID;
+  String name;
+  int sortOrder;
 
   Sport({
     required this.sportID,

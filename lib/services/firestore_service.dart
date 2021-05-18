@@ -27,8 +27,32 @@ class FirestoreService {
     return allData;
   }
 
+  Future<Sport?> getOneSport(String name) async {
+    QuerySnapshot querySnapshot =
+        await _db.collection('sports').where('name', isEqualTo: name).get();
+
+    if (querySnapshot.docs.isEmpty) {
+      return null;
+    } else {
+      final sport = querySnapshot.docs
+          .map((doc) => Sport(
+                name: doc['name'],
+                sortOrder: doc['sortOrder'],
+                sportID: doc['sportID'],
+              ))
+          .first;
+      return sport;
+    }
+  }
+
   // upsert
-  Future<void> setSport(Sport sport) {
+  Future<void> setSport(Sport sport) async {
+    Sport? workSport = await getOneSport(sport.name);
+
+    if (workSport != null) {
+      sport.sportID = workSport.sportID;
+    }
+
     var options = SetOptions(merge: true);
     return _db
         .collection('sports')

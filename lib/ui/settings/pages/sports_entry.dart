@@ -32,26 +32,17 @@ class _SportsEntryState extends State<SportsEntry> {
     sortOrderController.text = widget.sport.sortOrder.toString();
     sportProvider.initializeSport(widget.sport);
 
-    // if (widget.sport.sportID == '') {
-    //   nameController.text = widget.sport.name;
-    //   sortOrderController.text = widget.sport.sortOrder.toString();
-    //   sportProvider.initializeSport(widget.sport);
-    //   //edit
-    // } else {
-    //   //add
-    //   sportProvider.initializeEmptySport();
-    // }
-
     super.initState();
   }
 
-// Function to validate the number
-  bool isNumber(String? value) {
-    if (value == null) {
-      return true;
+  String? _validateName(String? value) {
+    if (value!.isEmpty) {
+      return 'Name is required';
     }
-    final n = int.tryParse(value);
-    return n != null;
+    if (value.length > 10) {
+      return 'Name cannot be greater than 10 characters';
+    }
+    return null;
   }
 
   @override
@@ -71,14 +62,7 @@ class _SportsEntryState extends State<SportsEntry> {
               TextFormField(
                 decoration: InputDecoration(labelText: 'Sport Name'),
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Name is required';
-                  }
-                  if (value.length > 10) {
-                    return 'Name cannot be greater than 10 characters';
-                  }
-                },
+                validator: (value) => _validateName(value),
                 onChanged: (String value) => sportProvider.changeName = value,
                 controller: nameController,
                 autofocus: true,
@@ -90,16 +74,17 @@ class _SportsEntryState extends State<SportsEntry> {
                   FilteringTextInputFormatter.digitsOnly,
                 ],
                 onChanged: (String value) {
-                  if (isNumber(value)) {
-                    final n = int.tryParse(value);
-                    sportProvider.changeSortOrder = n!;
+                  int? converted = int.tryParse(value);
+                  if (converted != null) {
+                    sportProvider.changeSortOrder = converted;
                   }
                 },
                 controller: sortOrderController,
               ),
               ElevatedButton(
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
+                  var form = _formKey.currentState!;
+                  if (form.validate()) {
                     sportProvider.saveSport();
                     Navigator.of(context).pop();
                   }

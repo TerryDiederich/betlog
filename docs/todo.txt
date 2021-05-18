@@ -1,9 +1,4 @@
 To Do
-- Validate Sports
-  - Duplicates?
-  - Move validation to separate function
-  - move save to separate function
-
 - Sports books
   - should be the same as sports
 
@@ -18,3 +13,6 @@ Completed
 - Validate Sports
   - Field length
   - Name required
+  - Duplicates?
+  - Move validation to separate function
+  - move save to separate function
