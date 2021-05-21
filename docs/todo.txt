@@ -4,7 +4,13 @@ To Do
 
 - Teams
   - should be similar to the other two. Extra layer, need to pick sport first.
+  - No sort order, just sort alphabetically
+    - ID
+    - Sport
+    - Name
+    - Abbrev
 
+- Setup on iOS
 
 
 

@@ -8,6 +8,7 @@ class SportsListPage extends StatelessWidget {
   static Route<dynamic> route() => MaterialPageRoute(
         builder: (context) => SportsListPage(),
       );
+
   final sportProvider = getIt<SportProvider>();
   @override
   Widget build(BuildContext context) {
@@ -26,44 +27,45 @@ class SportsListPage extends StatelessWidget {
               return const Text('Firestore is loading...');
             } else {
               return ListView.builder(
-                  itemCount: snapshot.data?.length,
-                  itemBuilder: (context, index) {
-                    final item = snapshot.data![index];
-                    return Dismissible(
-                      direction: DismissDirection.endToStart,
-                      key: Key(item.name),
-                      onDismissed: (direction) {
-                        sportProvider.remoteSport(item.sportID);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              '${item.name} deleted',
-                              textAlign: TextAlign.center,
+                itemCount: snapshot.data?.length,
+                itemBuilder: (context, index) {
+                  final item = snapshot.data![index];
+                  return Dismissible(
+                    direction: DismissDirection.endToStart,
+                    key: Key(item.name),
+                    onDismissed: (direction) {
+                      sportProvider.removeSport(item.sportID);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '${item.name} deleted',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    },
+                    background: Container(
+                      color: Colors.red,
+                    ),
+                    child: ListTile(
+                      trailing: Icon(
+                        Icons.edit,
+                        color: Theme.of(context).accentColor,
+                      ),
+                      title: Text(snapshot.data![index].name),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SportsEntry(
+                              sport: snapshot.data![index],
                             ),
                           ),
                         );
                       },
-                      background: Container(
-                        color: Colors.red,
-                      ),
-                      child: ListTile(
-                        trailing: Icon(
-                          Icons.edit,
-                          color: Theme.of(context).accentColor,
-                        ),
-                        title: Text(snapshot.data![index].name),
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => SportsEntry(
-                                sport: snapshot.data![index],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  });
+                    ),
+                  );
+                },
+              );
             }
           }),
       floatingActionButton: FloatingActionButton(

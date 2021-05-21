@@ -1,6 +1,8 @@
 //import 'package:betlog/providers/sport_provider.dart';
 //import 'package:betlog/models/sport.dart';
-//import 'package:betlog/providers/setup_getit.dart';
+// import 'package:betlog/models/sportsbook.dart';
+// import 'package:betlog/providers/setup_getit.dart';
+// import 'package:betlog/providers/sportbook_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:uuid/uuid.dart';
 
@@ -11,6 +13,11 @@ class BetsPage extends StatelessWidget {
 
   _getData() async {
     //Database db = Database();
+    // final sportsbookProvider = getIt<SportsbookProvider>();
+    // List<Sportsbook?> list = [];
+    // list = await sportsbookProvider.sportsbooksList;
+    // var cnt = list.length;
+
     //  final sportProvider = getIt<SportProvider>();
     // var uuid = Uuid();
     // var sport = Sport(

@@ -61,7 +61,7 @@ class SportProvider with ChangeNotifier {
     }
   }
 
-  remoteSport(String sportID) {
+  removeSport(String sportID) {
     firestoreService.removeSport(sportID);
   }
 }
