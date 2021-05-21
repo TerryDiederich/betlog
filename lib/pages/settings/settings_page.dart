@@ -1,6 +1,6 @@
-import 'package:betlog/pages/settings/settings_detail_page.dart';
 import 'package:betlog/pages/settings/sports_list.dart';
 import 'package:betlog/pages/settings/sportsbook_list.dart';
+import 'package:betlog/pages/settings/teams_list.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -30,9 +30,9 @@ class SettingsPage extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () => Navigator.of(context).push(
-                  SettingsDetailPage.route(),
+                  TeamsListPage.route(),
                 ),
-                child: Text("Navigate to Settings Detail Page"),
+                child: Text("Edit Teams"),
               ),
             ],
           ),

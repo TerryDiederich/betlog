@@ -1,7 +1,4 @@
 To Do
-- Sports books
-  - should be the same as sports
-
 - Teams
   - should be similar to the other two. Extra layer, need to pick sport first.
   - No sort order, just sort alphabetically
@@ -22,3 +19,6 @@ Completed
   - Duplicates?
   - Move validation to separate function
   - move save to separate function
+
+- Sports books
+  - should be the same as sports
