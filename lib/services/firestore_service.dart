@@ -11,6 +11,10 @@ class FirestoreService {
   String colSportsbooks = 'sportsbooks';
 
   // ---------- Sports----------------------------------------------
+  Stream<QuerySnapshot<Map<String, dynamic>>> getSnapshots() {
+    return _db.collection(colSports).snapshots();
+  }
+
   Stream<List<Sport>> getSportsStream() {
     return _db.collection(colSports).orderBy('sortOrder').snapshots().map(
         (snapshot) =>

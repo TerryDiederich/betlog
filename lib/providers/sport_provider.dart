@@ -1,5 +1,6 @@
 import 'package:betlog/models/sport.dart';
 import 'package:betlog/services/firestore_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
@@ -13,6 +14,8 @@ class SportProvider with ChangeNotifier {
   //Getters
   String get name => _name;
   int get sortOrder => _sortOrder;
+  Stream<QuerySnapshot<Map<String, dynamic>>> get snapshots =>
+      firestoreService.getSnapshots();
   Stream<List<Sport>> get sports => firestoreService.getSportsStream();
   Future<List<Sport?>> get sportsList async =>
       await firestoreService.getSportsList();
