@@ -1,5 +1,6 @@
 import 'package:betlog/models/sport.dart';
 import 'package:betlog/models/sportsbook.dart';
+import 'package:betlog/models/team.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 //https://github.com/flutter/flutter/issues/27095
@@ -9,6 +10,7 @@ class FirestoreService {
 
   String colSports = 'sports';
   String colSportsbooks = 'sportsbooks';
+  String colTeams = 'teams';
 
   // ---------- Sports----------------------------------------------
   Stream<QuerySnapshot<Map<String, dynamic>>> getSnapshots() {
@@ -137,4 +139,67 @@ class FirestoreService {
   }
 
   // ---------- Sportsbooks----------------------------------------------
+
+  // ---------- Teams----------------------------------------------
+  Stream<List<Team>> getTeamsForSportByNameStream(String _sport) {
+    return _db
+        .collection(colTeams)
+        .orderBy('name')
+        .where('sport', isEqualTo: _sport)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Team.fromJson(doc.data())).toList());
+  }
+
+  Future<List<Team?>> getTeamsByNameList() async {
+    QuerySnapshot querySnapshot =
+        await _db.collection(colTeams).orderBy('name').get();
+
+    final teams = querySnapshot.docs
+        .map((doc) => Team(
+              teamID: doc['teamid'],
+              sport: doc['sport'],
+              name: doc['name'],
+              abbrev: doc['abbrev'],
+            ))
+        .toList();
+
+    return teams;
+  }
+
+  Future<Team?> getOneTeamByName(String name) async {
+    QuerySnapshot querySnapshot =
+        await _db.collection(colTeams).where('name', isEqualTo: name).get();
+
+    if (querySnapshot.docs.isEmpty) {
+      return null;
+    } else {
+      final team = querySnapshot.docs
+          .map((doc) => Team(
+                teamID: doc['teamid'],
+                sport: doc['sport'],
+                name: doc['name'],
+                abbrev: doc['abbrev'],
+              ))
+          .first;
+      return team;
+    }
+  }
+
+  // upsert
+  Future<void> setTeam(Team team) async {
+    Team? workTeam = await getOneTeamByName(team.name);
+
+    if (workTeam != null) {
+      team.teamID = workTeam.teamID;
+    }
+
+    var options = SetOptions(merge: true);
+    return _db.collection(colTeams).doc(team.teamID).set(team.toMap(), options);
+  }
+
+  Future<void> removeTeam(String teamID) {
+    return _db.collection(colTeams).doc(teamID).delete();
+  }
+  // ---------- Teams----------------------------------------------
 }

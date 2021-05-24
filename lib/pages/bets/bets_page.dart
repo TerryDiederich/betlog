@@ -1,10 +1,12 @@
 //import 'package:betlog/providers/sport_provider.dart';
 //import 'package:betlog/models/sport.dart';
 // import 'package:betlog/models/sportsbook.dart';
+// import 'package:betlog/models/team.dart';
 // import 'package:betlog/providers/setup_getit.dart';
 // import 'package:betlog/providers/sportbook_provider.dart';
+// import 'package:betlog/providers/team_provider.dart';
 import 'package:flutter/material.dart';
-//import 'package:uuid/uuid.dart';
+// import 'package:uuid/uuid.dart';
 
 class BetsPage extends StatelessWidget {
   static Route<dynamic> route() => MaterialPageRoute(
@@ -17,7 +19,16 @@ class BetsPage extends StatelessWidget {
     // List<Sportsbook?> list = [];
     // list = await sportsbookProvider.sportsbooksList;
     // var cnt = list.length;
-
+    // final teamProvider = getIt<TeamProvider>();
+    // var uuid = Uuid();
+    // var team = Team(
+    //   teamID: uuid.v1(),
+    //   sport: 'MLB',
+    //   name: 'Washington Nationals',
+    //   abbrev: 'WAS',
+    // );
+    // teamProvider.initializeTeam(team);
+    // teamProvider.saveTeam();
     //  final sportProvider = getIt<SportProvider>();
     // var uuid = Uuid();
     // var sport = Sport(
