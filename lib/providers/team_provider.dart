@@ -16,6 +16,8 @@ class TeamProvider with ChangeNotifier {
   String get abbrev => _abbrev;
   Stream<List<Team>> get teams =>
       firestoreService.getTeamsForSportByNameStream('MLB');
+  Future<List<Team?>> get getTeamsByNameList async =>
+      await firestoreService.getTeamsByNameList('MLB');
 
   //setters
   set changeSport(String sport) {
@@ -36,6 +38,10 @@ class TeamProvider with ChangeNotifier {
   //functions
   Stream<List<Team>> getTeams(String _sport) {
     return firestoreService.getTeamsForSportByNameStream(_sport);
+  }
+
+  Future<List<Team?>> getTeamsList(String _sport) {
+    return firestoreService.getTeamsByNameList(_sport);
   }
 
   initializeTeam(Team team) {

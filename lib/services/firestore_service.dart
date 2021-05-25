@@ -151,13 +151,19 @@ class FirestoreService {
             snapshot.docs.map((doc) => Team.fromJson(doc.data())).toList());
   }
 
-  Future<List<Team?>> getTeamsByNameList() async {
-    QuerySnapshot querySnapshot =
-        await _db.collection(colTeams).orderBy('name').get();
+  Future<List<Team?>> getTeamsByNameList(String _sport) async {
+    print('from service $_sport');
+    QuerySnapshot querySnapshot = await _db
+        .collection(colTeams)
+        .orderBy('name')
+        .where('sport', isEqualTo: _sport)
+        .get();
 
-    final teams = querySnapshot.docs
+    int x = querySnapshot.docs.length;
+    print('docs length $x.toString()');
+    List<Team> teams = querySnapshot.docs
         .map((doc) => Team(
-              teamID: doc['teamid'],
+              teamID: doc['teamID'],
               sport: doc['sport'],
               name: doc['name'],
               abbrev: doc['abbrev'],
@@ -176,7 +182,7 @@ class FirestoreService {
     } else {
       final team = querySnapshot.docs
           .map((doc) => Team(
-                teamID: doc['teamid'],
+                teamID: doc['teamID'],
                 sport: doc['sport'],
                 name: doc['name'],
                 abbrev: doc['abbrev'],
