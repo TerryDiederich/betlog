@@ -42,7 +42,7 @@ class SportsbookProvider with ChangeNotifier {
     _sortOrder = 0;
   }
 
-  saveSportsbook() {
+  saveSportsbook() async {
     if (_sportsbookID == '') {
       //add
       var newSportsbook = Sportsbook(
@@ -50,7 +50,7 @@ class SportsbookProvider with ChangeNotifier {
         name: _name,
         sortOrder: _sortOrder,
       );
-      firestoreService.setSportsbook(newSportsbook);
+      await firestoreService.setSportsbook(newSportsbook);
     } else {
       //update
       var updatedSportsbook = Sportsbook(
@@ -58,11 +58,32 @@ class SportsbookProvider with ChangeNotifier {
         name: _name,
         sortOrder: _sortOrder,
       );
-      firestoreService.setSportsbook(updatedSportsbook);
+      await firestoreService.setSportsbook(updatedSportsbook);
     }
   }
 
   removeSportsbook(String sportsbookID) {
     firestoreService.removeSportsbook(sportsbookID);
+  }
+
+  removeAllSportsbooks() async {
+    await firestoreService.removeAllSportsbooks();
+  }
+
+  repopulate() async {
+    this._sportsbookID = '';
+    this._name = 'Draftkings';
+    this._sortOrder = 1;
+    await saveSportsbook();
+
+    this._sportsbookID = '';
+    this._name = 'BetMGM';
+    this._sortOrder = 2;
+    await saveSportsbook();
+
+    this._sportsbookID = '';
+    this._name = 'Fanduel';
+    this._sortOrder = 3;
+    await saveSportsbook();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:betlog/pages/settings/repopulate.dart';
 import 'package:betlog/pages/settings/sports_list.dart';
 import 'package:betlog/pages/settings/sportsbook_list.dart';
 import 'package:betlog/pages/settings/teams_list.dart';
@@ -33,6 +34,12 @@ class SettingsPage extends StatelessWidget {
                   TeamsListPage.route(),
                 ),
                 child: Text("Edit Teams"),
+              ),
+              OutlinedButton(
+                onPressed: () => Navigator.of(context).push(
+                  RepopulatePage.route(),
+                ),
+                child: Text("Repopulate tables"),
               ),
             ],
           ),

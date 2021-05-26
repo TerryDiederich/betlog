@@ -74,6 +74,14 @@ class FirestoreService {
   Future<void> removeSport(String sportID) {
     return _db.collection(colSports).doc(sportID).delete();
   }
+
+  Future<void> removeAllSports() async {
+    return await _db.collection(colSports).get().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
+  }
   // ---------- Sports----------------------------------------------
 
   // ---------- Sportsbooks----------------------------------------------
@@ -136,6 +144,14 @@ class FirestoreService {
 
   Future<void> removeSportsbook(String sportsbookID) {
     return _db.collection(colSportsbooks).doc(sportsbookID).delete();
+  }
+
+  Future<void> removeAllSportsbooks() async {
+    return await _db.collection(colSportsbooks).get().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
   }
 
   // ---------- Sportsbooks----------------------------------------------
@@ -206,6 +222,14 @@ class FirestoreService {
 
   Future<void> removeTeam(String teamID) {
     return _db.collection(colTeams).doc(teamID).delete();
+  }
+
+  Future<void> removeAllTeams() async {
+    return await _db.collection(colTeams).get().then((snapshot) {
+      for (DocumentSnapshot ds in snapshot.docs) {
+        ds.reference.delete();
+      }
+    });
   }
   // ---------- Teams----------------------------------------------
 }

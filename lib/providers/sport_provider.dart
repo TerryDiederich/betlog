@@ -44,7 +44,7 @@ class SportProvider with ChangeNotifier {
     _sportID = '';
   }
 
-  saveSport() {
+  saveSport() async {
     if (_sportID == '') {
       //add
       var newSport = Sport(
@@ -52,7 +52,7 @@ class SportProvider with ChangeNotifier {
         sortOrder: _sortOrder,
         sportID: uuid.v1(),
       );
-      firestoreService.setSport(newSport);
+      await firestoreService.setSport(newSport);
     } else {
       //edit
       var updatedSport = Sport(
@@ -60,11 +60,32 @@ class SportProvider with ChangeNotifier {
         sortOrder: _sortOrder,
         sportID: _sportID,
       );
-      firestoreService.setSport(updatedSport);
+      await firestoreService.setSport(updatedSport);
     }
   }
 
   removeSport(String sportID) {
     firestoreService.removeSport(sportID);
+  }
+
+  removeAllSports() async {
+    await firestoreService.removeAllSports();
+  }
+
+  repopulate() async {
+    this._sportID = '';
+    this._name = 'MLB';
+    this._sortOrder = 1;
+    await saveSport();
+
+    this._sportID = '';
+    this._name = 'NFL';
+    this._sortOrder = 2;
+    await saveSport();
+
+    this._sportID = '';
+    this._name = 'NHL';
+    this._sortOrder = 3;
+    await saveSport();
   }
 }
