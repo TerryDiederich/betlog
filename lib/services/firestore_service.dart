@@ -1,3 +1,4 @@
+import 'package:betlog/models/bet.dart';
 import 'package:betlog/models/sport.dart';
 import 'package:betlog/models/sportsbook.dart';
 import 'package:betlog/models/team.dart';
@@ -11,6 +12,16 @@ class FirestoreService {
   String colSports = 'sports';
   String colSportsbooks = 'sportsbooks';
   String colTeams = 'teams';
+  String colBets = 'bets';
+
+  // ---------- Bets ----------------------------------------------
+  Stream<List<Bet>> getBetsStream() {
+    return _db.collection(colBets).orderBy('gamedate').snapshots().map(
+        (snapshot) =>
+            snapshot.docs.map((doc) => Bet.fromJson(doc.data())).toList());
+  }
+
+  // ---------- Bets ----------------------------------------------
 
   // ---------- Sports----------------------------------------------
   Stream<QuerySnapshot<Map<String, dynamic>>> getSnapshots() {

@@ -18,10 +18,18 @@ Parlay bet
          WAS +130
 
 
+
+BOS -180 $10.00 $10.00
+BOS -3.5 -110 $10.00 $10.00
+Over 54.5 -110 $10.00 $10.00
+01/01/2021 BOS vs CHI
+
+
 Data record
 - ID: alskdflsfdkj
 - Sportsbook: DraftKings
 - Sport: NFL
+- GameDate : datetime
 - BetType: Spread
 - BetTeam: KC
 - Odds: -180

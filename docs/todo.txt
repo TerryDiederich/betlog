@@ -1,11 +1,5 @@
 To Do
-- Teams
-  - should be similar to the other two. Extra layer, need to pick sport first.
-  - No sort order, just sort alphabetically
-    - ID
-    - Sport
-    - Name
-    - Abbrev
+- BetLog
 
 - Setup on iOS
 
@@ -22,3 +16,11 @@ Completed
 
 - Sports books
   - should be the same as sports
+
+ - Teams
+  - should be similar to the other two. Extra layer, need to pick sport first.
+  - No sort order, just sort alphabetically
+    - ID
+    - Sport
+    - Name
+    - Abbrev

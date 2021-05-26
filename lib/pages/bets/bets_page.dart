@@ -1,46 +1,21 @@
-//import 'package:betlog/providers/sport_provider.dart';
-//import 'package:betlog/models/sport.dart';
-// import 'package:betlog/models/sportsbook.dart';
-// import 'package:betlog/models/team.dart';
-// import 'package:betlog/providers/setup_getit.dart';
-// import 'package:betlog/providers/sportbook_provider.dart';
-// import 'package:betlog/providers/team_provider.dart';
+import 'package:betlog/models/bet.dart';
+import 'package:betlog/providers/bet_provider.dart';
+import 'package:betlog/providers/setup_getit.dart';
 import 'package:flutter/material.dart';
-// import 'package:uuid/uuid.dart';
 
-class BetsPage extends StatelessWidget {
+class BetsPage extends StatefulWidget {
   static Route<dynamic> route() => MaterialPageRoute(
         builder: (context) => BetsPage(),
       );
 
-  _getData() async {
-    //Database db = Database();
-    // final sportsbookProvider = getIt<SportsbookProvider>();
-    // List<Sportsbook?> list = [];
-    // list = await sportsbookProvider.sportsbooksList;
-    // var cnt = list.length;
-    // final teamProvider = getIt<TeamProvider>();
-    // var uuid = Uuid();
-    // var team = Team(
-    //   teamID: uuid.v1(),
-    //   sport: 'MLB',
-    //   name: 'Washington Nationals',
-    //   abbrev: 'WAS',
-    // );
-    // teamProvider.initializeTeam(team);
-    // teamProvider.saveTeam();
-    //  final sportProvider = getIt<SportProvider>();
-    // var uuid = Uuid();
-    // var sport = Sport(
-    //   sportID: uuid.v1(),
-    //   name: 'NFL',
-    //   sortOrder: 3,
-    // );
-    // db.setSport(sport);
-    // List<Sport?> list = [];
-    // list = await sportProvider.sportsList;
-    // var cnt = list.length;
-  }
+  @override
+  _BetsPageState createState() => _BetsPageState();
+}
+
+class _BetsPageState extends State<BetsPage> {
+  final betProvider = getIt<BetProvider>();
+
+  //_getData() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +23,45 @@ class BetsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Bets"),
       ),
-      body: Center(
-        // child: Text("List of bets"),
-        child: TextButton(
-          onPressed: () => _getData(),
-          child: Text("Get Data"),
-        ),
+      body: Column(
+        children: [
+          Text(
+            'Open Bets',
+            textAlign: TextAlign.center,
+          ),
+          StreamBuilder<List<Bet>>(
+            stream: betProvider.bets,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              }
+              if (!snapshot.hasData) {
+                return CircularProgressIndicator();
+              } else {
+                return ListView.builder(
+                  itemCount: snapshot.data?.length,
+                  itemBuilder: (context, index) {
+                    final item = snapshot.data![index];
+                    return Dismissible(
+                      direction: DismissDirection.endToStart,
+                      key: Key(item.betID),
+                      onDismissed: (direction) {},
+                      background: Container(
+                        color: Colors.red,
+                      ),
+                      child: ListTile(
+                        trailing: Icon(Icons.add),
+                        title: Text(snapshot.data![index].odds.toString()),
+                        subtitle: Text(snapshot.data![index].homeTeam),
+                        leading: Icon(Icons.sports_baseball),
+                      ),
+                    );
+                  },
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:betlog/providers/bet_provider.dart';
 import 'package:betlog/providers/sport_provider.dart';
 import 'package:betlog/providers/sportbook_provider.dart';
 import 'package:betlog/providers/team_provider.dart';
@@ -11,4 +12,5 @@ void setupGetIt() {
   getIt.registerLazySingleton<SportProvider>(() => SportProvider());
   getIt.registerLazySingleton<SportsbookProvider>(() => SportsbookProvider());
   getIt.registerLazySingleton<TeamProvider>(() => TeamProvider());
+  getIt.registerLazySingleton<BetProvider>(() => BetProvider());
 }
