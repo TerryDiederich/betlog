@@ -21,6 +21,12 @@ class FirestoreService {
             snapshot.docs.map((doc) => Bet.fromJson(doc.data())).toList());
   }
 
+  // upsert
+  Future<void> setBet(Bet bet) async {
+    var options = SetOptions(merge: true);
+    return _db.collection(colBets).doc(bet.betID).set(bet.toMap(), options);
+  }
+
   // ---------- Bets ----------------------------------------------
 
   // ---------- Sports----------------------------------------------

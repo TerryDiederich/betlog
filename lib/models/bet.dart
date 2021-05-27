@@ -2,7 +2,7 @@ class Bet {
   String betID;
   String sportsbook;
   String sport;
-  late DateTime gamedate;
+  int gamedate;
   String betType;
   String betTeam;
   int odds;
@@ -10,6 +10,8 @@ class Bet {
   double total;
   String overunder;
   String notes;
+  double amountBet;
+  double amountToWin;
   String awayTeam;
   int awayTeamScore;
   String homeTeam;
@@ -29,6 +31,8 @@ class Bet {
     required this.total,
     required this.overunder,
     required this.notes,
+    required this.amountBet,
+    required this.amountToWin,
     required this.awayTeam,
     required this.awayTeamScore,
     required this.homeTeam,
@@ -41,6 +45,7 @@ class Bet {
     this.betID = '',
     this.sportsbook = '',
     this.sport = '',
+    this.gamedate = 0,
     this.betType = '',
     this.betTeam = '',
     this.odds = 0,
@@ -48,6 +53,8 @@ class Bet {
     this.total = 0.0,
     this.overunder = '',
     this.notes = '',
+    this.amountBet = 0,
+    this.amountToWin = 0,
     this.awayTeam = '',
     this.awayTeamScore = 0,
     this.homeTeam = '',
@@ -69,8 +76,10 @@ class Bet {
       total: json['total'],
       overunder: json['overunder'],
       notes: json['notes'],
+      amountBet: json['amountBet'],
+      amountToWin: json['amountToWin'],
       awayTeam: json['awayTeam'],
-      awayTeamScore: json['awaTeamScore'],
+      awayTeamScore: json['awayTeamScore'],
       homeTeam: json['homeTeam'],
       homeTeamScore: json['homeTeamScore'],
       didWin: json['didWin'],
@@ -91,6 +100,8 @@ class Bet {
       'total': total,
       'overunder': overunder,
       'notes': notes,
+      'amountBet': amountBet,
+      'amountToWin': amountToWin,
       'awayTeam': awayTeam,
       'awayTeamScore': awayTeamScore,
       'homeTeam': homeTeam,
